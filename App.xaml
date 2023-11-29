@@ -1,0 +1,9 @@
+﻿<Application x:Class="Municipios.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Municipios"
+             StartupUri="view/MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

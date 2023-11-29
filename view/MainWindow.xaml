@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Pueblos Castilla-La Mancha" HorizontalAlignment="Left" Margin="192,60,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="191,84,0,0" VerticalAlignment="Top" Width="120"
+                  ItemsSource="{Binding ListaPueblos}"/>
     </Grid>
 </Window>

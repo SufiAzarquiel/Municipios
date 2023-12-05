@@ -15,10 +15,63 @@
             </Grid>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
-        <Label Content="Pueblos Castilla-La Mancha" HorizontalAlignment="Left" Margin="192,60,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="191,84,0,0" VerticalAlignment="Top" Width="120"
-                  ItemsSource="{Binding ListaMunicipios}"
-                  ItemTemplate="{DynamicResource DataTemplateC}"/>
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Pueblo"
+               FontSize="32"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.Row="0" Grid.Column="0"/>
+        <ListBox Grid.Row="1" Grid.Column="0"
+                 ItemsSource="{Binding ListaMunicipios}"
+                 ItemTemplate="{DynamicResource DataTemplateC}"
+                 SelectedIndex="{Binding SelectedMunicipio}"/>
+
+        <Label Content="Tiempo"
+               FontSize="32"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.Row="0" Grid.Column="1"/>
+        
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalAlignment="Center" Height="50" 
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   Source="{Binding Wicon}"/>
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <Label Height="40" HorizontalAlignment="Center" Content="TEMP"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="MIN"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="MAX"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="LONG"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="LAT"/>
+                <Label Height="40" HorizontalAlignment="Center" Content="Vs"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_min}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mtemp_max}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clon}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Clat}"/>
+                <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Wspeed}"/>
+            </StackPanel>
+        </Grid>
+        
     </Grid>
 </Window>

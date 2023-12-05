@@ -15,7 +15,7 @@ namespace Municipios.model
         public string pattern { get; set; }
     }
 
-    public class Root
+    public class RootMunicipios
     {
         public string version { get; set; }
         public string reqId { get; set; }

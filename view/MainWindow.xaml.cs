@@ -23,6 +23,9 @@ namespace Municipios
         public MainWindow()
         {
             InitializeComponent();
+
+            // data context
+            DataContext = new viewModel.ViewModel();
         }
     }
 }

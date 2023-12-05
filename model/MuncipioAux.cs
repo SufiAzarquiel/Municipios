@@ -2,6 +2,6 @@
 {
     public class MuncipioAux
     {
-        public string? Municipio { get; set; }
+        public string? Nombre { get; set; }
     }
 }

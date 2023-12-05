@@ -6,9 +6,19 @@
         xmlns:local="clr-namespace:Municipios"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="DataTemplateC">
+            <Grid Width="200">
+                <TextBlock Text="{Binding Nombre}" Height="20" Width="180"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Label Content="Pueblos Castilla-La Mancha" HorizontalAlignment="Left" Margin="192,60,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="191,84,0,0" VerticalAlignment="Top" Width="120"
-                  ItemsSource="{Binding ListaPueblos}"/>
+                  ItemsSource="{Binding ListaMunicipios}"
+                  ItemTemplate="{DynamicResource DataTemplateC}"/>
     </Grid>
 </Window>

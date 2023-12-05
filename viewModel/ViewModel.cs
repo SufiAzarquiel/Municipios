@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
@@ -34,7 +35,7 @@ namespace Municipios.viewModel
             }
         }
 
-        private async System.Threading.Tasks.Task<List<MuncipioAux>> Municipios()
+        private async void CargarMunicipios()
         {
             var client = new HttpClient();
             client.MaxResponseContentBufferSize = 1024 * 1024;
@@ -45,21 +46,52 @@ namespace Municipios.viewModel
 
             var response = await client.GetAsync(uri);
 
-            var listaMunicipios = new List<MuncipioAux>();
             if (response.IsSuccessStatusCode)
             {
                 // TODO: parse JSON
+                /*
+                {
+                  "table": {
+                    "cols": [],
+                    "rows": 
+                    [
+                      {
+                        "c": 
+                        [
+                          {
+                            "v": 1,
+                            "f": "1"
+                          },
+                          {
+                            "v": "Abengibre"
+                          }
+                        ]
+                      },
+                      {
+                      },
+                      ...
+                    ]
+                }
+                 */
+                var data = response.Content.ReadAsStringAsync();
 
-            }
-            return listaMunicipios;
-        }
+                // get index of first '{' character
+                var start = data.Result.ToString().IndexOf('{');
 
-        private async void CargarMunicipios()
-        {
-            var municipios = await Municipios();
-            foreach (var municipio in municipios)
-            {
-                ListaMunicipios.Add(municipio);
+                var json = data.Result.ToString().Remove(0, start);
+                json = json.Substring(0, json.Length - 2);
+
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Root>(json);
+                Debug.WriteLine("Getting result...");
+
+                foreach (var row in result!.table.rows)
+                {
+                    var municipio = new MuncipioAux();
+                    municipio.Nombre = row.c[1].v.ToString();
+                    ListaMunicipios.Add(municipio);
+                    Debug.WriteLine("Name: " + municipio.Nombre);
+                }
+
             }
         }
     }

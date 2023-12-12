@@ -32,7 +32,7 @@
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Grid.Row="0" Grid.Column="0"/>
-        <ComboBox Grid.Row="1" Grid.Column="0"
+        <ListBox Grid.Row="1" Grid.Column="0"
                  ItemsSource="{Binding ListaMunicipios}"
                  ItemTemplate="{DynamicResource DataTemplateC}"
                 

@@ -143,24 +143,38 @@ namespace Municipios.viewModel
             }
         }
 
-        private string selectedMunicipio;
-        public string SelectedMunicipio
+        private MuncipioAux selectedMunicipio;
+        public MuncipioAux SelectedMunicipio
         {
             get { return selectedMunicipio; }
             set
             {
                 selectedMunicipio = value;
                 OnPropertyChanged("SelectedMunicipio");
-                Debug.WriteLine("SelectedMunicipio: " + SelectedMunicipio);
-                LeerJsonTiempo();
+                Debug.WriteLine("SelectedMunicipio: " + SelectedMunicipio.Nombre);
+                if(SelectedMunicipio != null)
+                {
+                    LeerJsonTiempo();
+                }
+            }
+        }
+
+        private string nombreMunicipio;
+        public string NombreMunicipio
+        {
+            get { return nombreMunicipio; }
+            set
+            {
+                nombreMunicipio = value;
+                OnPropertyChanged("NombreMunicipio");
             }
         }
 
         private async void LeerJsonTiempo()
         {
             var client = new HttpClient();
-            var nombre = "";
-            string URLData = "http://api.openweathermap.org/data/2.5/find?&q=" + "Toledo" + ",eslang=es&units=metric&APPID=278857e8dee51f914026df21d0d40c19";
+            NombreMunicipio = SelectedMunicipio.Nombre;
+            string URLData = "http://api.openweathermap.org/data/2.5/find?&q=" + NombreMunicipio + ",eslang=es&units=metric&APPID=278857e8dee51f914026df21d0d40c19";
 
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

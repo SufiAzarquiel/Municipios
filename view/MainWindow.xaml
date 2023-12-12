@@ -32,12 +32,13 @@
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Grid.Row="0" Grid.Column="0"/>
-        <ListBox Grid.Row="1" Grid.Column="0"
+        <ComboBox Grid.Row="1" Grid.Column="0"
                  ItemsSource="{Binding ListaMunicipios}"
                  ItemTemplate="{DynamicResource DataTemplateC}"
-                 SelectedIndex="{Binding SelectedMunicipio}"/>
+                
+                 SelectedItem="{Binding SelectedMunicipio}"/>
 
-        <Label Content="Tiempo"
+        <Label Content="{Binding NombreMunicipio}"
                FontSize="32"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
